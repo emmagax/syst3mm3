@@ -531,6 +531,22 @@
     background: #3b88ec;
   }
 
+  .music-bar {
+    background: #efefefa9;
+    height: 4px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .music-bar #length-m {
+    width: 0%;
+    background: #2196f3;
+    height: 100%;
+    transition: width linear 200ms;
+  }
+
   .music-time,
   .music-bar {
     max-width: 350px;
