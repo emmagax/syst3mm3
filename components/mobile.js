@@ -172,7 +172,7 @@ mwindowClose.addEventListener('click', closePlayer);
     },
     {
       id: 2,
-      url: "./sounds/lagrimas-de-angel-demo6.wav",
+      url: "./sounds/lagrimas-de-angel-demo7.wav",
       title: "lágrimas de ángel",
       artist: "EMME",
       cover: "./src/img/Reborn-cover.JPG",
