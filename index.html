@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./windows.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/src/img/Screenshot 2025-05-15 173529.PNG"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Syne+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <title>EMME</title>
+  </head>
+  <body>
+
+    <!-- Code Rain Effect -->
+
+    <canvas id="Matrix"></canvas>
+    <section class="landing">
+      <!-- <h1>EMME</h1> -->
+      <div class="landing-img" id="landing-img">
+        <img src="/src/img/NoB copia.png" alt="" />
+      </div>
+    </section>
+
+    <!-- Navigation Item Rain -->
+
+    <section class="nav1">
+      <div class="nav-item">
+        <audio
+          id="hover-sound"
+          src="/sounds/hover-sound2-1.wav"
+          preload="auto"
+        ></audio>
+        <button class="nav-btn">
+          <svg
+            version="1.1"
+            id="quilisma"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1080 1080"
+            style="enable-background: new 0 0 1080 1080"
+            xml:space="preserve"
+          >
+            <defs>
+              <filter
+                id="glow"
+                x="-10 0%"
+                y="-100%"
+                width="300%"
+                height="300%"
+                color-interpolation-filters="sRGB"
+              >
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="20"
+                  flood-color="#00a6ff"
+                  flood-opacity=".5"
+                />
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="10"
+                  flood-color="#00a6ff"
+                  flood-opacity="1"
+                />
+              </filter>
+            </defs>
+            <g filter="url(#glow)">
+              <path
+                fill="currentColor"
+                d="M754.09,176.02c-1.74,5.41-3.55,10.8-5.2,16.23c-11.23,37.12-20.57,74.97-34.41,111.09c-7.2,18.77-22.25,34.58-33.92,51.62
+        c-32.36,47.25-79.62,73.2-132.17,91.51c-1.12,0.39-2.54,0.35-3.39,1.03c-19.85,15.98-37.72,12.66-53.48-7.87
+        c-11.01,41.61-26.48,79.91-19.18,121.85c0.86,4.96,0.92,12.54-2.03,15.27c-14.26,13.22-12.83,30.18-11.99,46.47
+        c0.37,7.23,6.03,14.13,8.96,21.32c2.73,6.7,7.88,14.2,6.58,20.18c-1.03,4.7-10.17,10.39-15.89,10.6
+        c-6.4,0.23-17.47-3.94-18.77-8.43c-6.01-20.76-18.42-37.84-11.55-64.61c9.33-36.37,25.98-72.96,20.05-112.66
+        c-0.53-3.55,2.83-10.78,5.17-11.14c14.26-2.17,11.63-12.36,11.83-21.57c0.31-14.59-2.32-29.3,9.09-42.27
+        c3.7-4.21,2.14-13.72,1.7-20.72c-0.94-14.75,4.02-21.35,20.21-21.45c16.85-0.1,30.2,0.81,33.92,21.15
+        c0.71,3.88,8.38,9.39,12.57,9.16c10.38-0.57,22.44-1.3,30.58-6.76c44.92-30.12,90.28-60.25,116.61-110.03
+        c16.44-31.07,32.49-62.34,48.82-93.46c3.38-6.44,7.21-12.63,10.84-18.94C750.71,174.41,752.4,175.21,754.09,176.02z"
+              />
+              <path
+                fill="currentColor"
+                d="M449.36,786.87c-3.76,9.02-6.13,19-11.58,26.86c-9.56,13.78-27.65,17.87-39.13,10.78c-12.6-7.78-19.51-28.27-13.86-42.2
+        c1.98-4.89,3.99-10.45,7.7-13.83c9.5-8.64,19.08-20.84,30.27-22.96C434.64,743.27,447.11,767.45,449.36,786.87z"
+              />
+            </g>
+          </svg>
+        </button>
+        <div class="nav-info">
+          <h2 class="decode-text">MÚSICA</h2>
+        </div>
+      </div>
+    </section>
+    <section class="nav2">
+      <div class="nav-item2">
+        <audio
+          id="hover-sound"
+          src="/sounds/hover-sound2-1.wav"
+          preload="auto"
+        ></audio>
+        <button class="nav-btn">
+          <svg
+            version="1.1"
+            id="xeno"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1080 1080"
+            style="enable-background: new 0 0 1080 1080"
+            xml:space="preserve"
+          >
+            <defs>
+              <filter
+                id="glow"
+                x="-100%"
+                y="-100%"
+                width="300%"
+                height="300%"
+                color-interpolation-filters="sRGB"
+              >
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="20"
+                  flood-color="#00a6ff"
+                  flood-opacity=".5"
+                />
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="10"
+                  flood-color="#00a6ff"
+                  flood-opacity="1"
+                />
+              </filter>
+            </defs>
+            <g filter="url(#glow)">
+              <path
+                fill="currentColor"
+                d="M521.98,397.93c0,38.27-0.52,76.56,0.44,114.81c0.19,7.59,4.66,20.09,9.55,21.4c7.72,2.07,19.53-0.94,25.93-6.23
+		c12.62-10.42,22.82-23.79,33.83-36.1c41.65-46.6,83.71-92.86,124.58-140.14c15.92-18.42,27.62-40.54,43.89-58.6
+		c19.64-21.79,40.73-42.86,64.11-60.36c7.44-5.57,26.52-2.52,36.14,3.35c13.26,8.09,11.43,23.41,2.23,35.78
+		c-5.34,7.19-11.51,13.9-18.07,20.02c-68.4,63.75-137.31,126.89-193.56,202.35c-15.19,20.37-35.85,36.69-50.94,57.12
+		c-12.08,16.37-22.46,33.89-33.22,51.13c-11.73,18.79-16.13,29.14-12.16,51.64c6.44,36.5,27.46,68.37,36.88,103.99
+		c3.29,12.46,3.47,28.86-8,34.72c-1.54,0.79-3.26,1.32-4.97,1.13c-2.73-0.3-4.91-2.32-6.87-4.23
+		c-13.32-12.95-26.64-25.9-39.97-38.85c-6.9-6.71-14.41-13.73-23.89-15.35c-7.62-1.3-15.32,1.12-22.66,3.52
+		c-21.99,7.16-43.98,14.32-65.97,21.48c-5.25,1.71-11.56,3.25-15.85-0.23c-2.48-2.01-3.59-5.25-4.15-8.39
+		c-2.48-13.95,3.66-27.92,10.68-40.23c11.88-20.86,26.6-39.88,39.81-59.88c6.93-10.5,13.53-21.26,18.97-32.62
+		c6.69-13.98,6.05-21.19,4.01-36.26c-5.9-43.61-9.78-87.49-15.56-131.12c-1.74-13.19-5.25-24.82,9.61-33.31
+		c3.39-1.94,5.48-10.89,4.17-15.49c-5.84-20.59-13.12-40.78-19.89-61.11c-8.69-26.1-15.65-28.45-39.27-13.42
+		c-2.48,1.58-5.2,3.46-7.98,3.82c-34.58,4.47-69.35,7.76-103.74,13.35c-17.01,2.76-24.44-4.69-31.37-18.07
+		c-22.32-43.09-14.37-58.82,35.04-62.49c44.1-3.27,87.92-5.42,131.01-18.07c18.62-5.47,40.09-1.36,60.27-1.39
+		c20.57-0.03,26.94,12.33,26.86,30.68c-0.17,40.55-0.05,81.1-0.05,121.65C521.9,397.93,521.94,397.93,521.98,397.93z"
+              />
+            </g>
+          </svg>
+        </button>
+        <div class="nav-info">
+          <h2 class="decode-text">XENO</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Windows -->
+
+    <section class="windows">
+      <div class="window-hidden" id="window1">
+        <div class="window-header">
+          <p>Música</p>
+          <div class="window-utility">
+            <span class="window-minimize">
+            <svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>minimize_line</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="System" transform="translate(-192.000000, -192.000000)">
+            <g id="minimize_line" transform="translate(192.000000, 192.000000)">
+                <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero">
+
+</path>
+                <path d="M3,12 C3,11.4477 3.44772,11 4,11 L20,11 C20.5523,11 21,11.4477 21,12 C21,12.5523 20.5523,13 20,13 L4,13 C3.44772,13 3,12.5523 3,12 Z" id="路径" fill="currentColor">
+
+</path>
+            </g>
+        </g>
+    </g>
+</svg>
+            </span>
+            <span class="window-maximize">
+            <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.5 3C3.67157 3 3 3.67157 3 4.5V11.5C3 12.3284 3.67157 13 4.5 13H11.5C12.3284 13 13 12.3284 13 11.5V4.5C13 3.67157 12.3284 3 11.5 3H4.5ZM4.5 4H11.5C11.7761 4 12 4.22386 12 4.5V11.5C12 11.7761 11.7761 12 11.5 12H4.5C4.22386 12 4 11.7761 4 11.5V4.5C4 4.22386 4.22386 4 4.5 4Z" fill="currentColor"/>
+            </svg>
+            </span>
+            <span class="window-close">
+            <svg
+            width="100%"
+            height="100%"
+            viewBox="-0.5 0 25 25"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 21.32L21 3.32001"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3 3.32001L21 21.32"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            </svg>
+            </span>
+          </div>
+        </div>
+        <div class="music-content">
+          <div class="music-info">
+            <div class="music-img">
+              <img src="./src/img/Reborn-cover.JPG" alt="">
+            </div>
+
+            <div class="music-metadata">
+              <h2 class="music-player__title"></h2>
+              <p> - </p>
+              <h2 class="music-player__author"></h2>
+            </div>
+
+            <div class="music-time">
+              <p class="music-time__current">00:00</p>
+              <p class="music-time__last">00:00</p>
+            </div>
+
+            <div class="music-bar" id="progress">
+              <div id="length"></div>
+            </div>
+
+            <div class="music-control">
+              <div class="music-control__backward" id="backward">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <title>backward</title>
+                  <path d="M10.2 6.4c-0.488 0-0.931 0.197-1.253 0.512-2.381 2.315-5.947 5.789-5.947 5.789s3.566 3.473 5.944 5.789c0.326 0.315 0.768 0.51 1.256 0.51 0.994 0 1.8-0.805 1.8-1.799v-9c0-0.994-0.806-1.801-1.8-1.801z"/>
+                  <path d="M19.2 6.4c-0.488 0-0.931 0.197-1.253 0.512-2.381 2.315-5.947 5.789-5.947 5.789s3.566 3.473 5.944 5.789c0.326 0.315 0.768 0.51 1.256 0.51 0.994 0 1.8-0.805 1.8-1.799v-9c0-0.994-0.806-1.801-1.8-1.801z"/>
+                </svg>
+              </div>
+
+              <div class="music-control__play" id="play">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
+                  <title>play</title>
+                  <path d="M10.396 18.433c2.641-2.574 6.604-6.433 6.604-6.433s-3.963-3.859-6.604-6.433c-0.363-0.349-0.853-0.567-1.396-0.567-1.104 0-2 0.896-2 2v10c0 1.104 0.896 2 2 2 0.543 0 1.033-0.218 1.396-0.567z"/>
+                </svg>
+              </div>
+
+              <div class="music-control__forward" id="forward">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <title>forward</title>
+                  <path d="M15.053 6.912c-0.324-0.314-0.765-0.512-1.253-0.512-0.994 0-1.8 0.807-1.8 1.801v9c0 0.994 0.806 1.799 1.8 1.799 0.488 0 0.93-0.195 1.253-0.512 2.381-2.314 5.947-5.787 5.947-5.787s-3.566-3.474-5.947-5.789z"/>
+                  <path d="M6.053 6.912c-0.324-0.314-0.765-0.512-1.253-0.512-0.994 0-1.8 0.807-1.8 1.801v9c0 0.994 0.806 1.799 1.8 1.799 0.488 0 0.93-0.195 1.253-0.512 2.381-2.314 5.947-5.787 5.947-5.787s-3.566-3.474-5.947-5.789z"/>
+                </svg>
+              </div>
+              <button class="music-control__stream">Escucha en:</button>
+              <button class="music-control__lyrics">Letra</button>
+            </div>
+          </div>
+          <div class="lyrics">
+            
+          </div>
+          
+          <div class="music-overlay" id="music-overlay">
+            <div class="music-overlay__content">
+              <h2 id="overlay-title"></h2>
+            <div class="music-overlay__buttons"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+
+    <section class="sidebar window-hidden">
+      <div>
+        <div id="minimItem1" class="sidebar-item closed-tab">
+          <button class="sidebar-btn">
+          <svg
+            version="1.1"
+            id="quilisma"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1080 1080"
+            style="enable-background: new 0 0 1080 1080"
+            xml:space="preserve"
+          >
+            <defs>
+              <filter
+                id="glow"
+                x="-10 0%"
+                y="-100%"
+                width="300%"
+                height="300%"
+                color-interpolation-filters="sRGB"
+              >
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="20"
+                  flood-color="#00a6ff"
+                  flood-opacity=".5"
+                />
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="10"
+                  flood-color="#00a6ff"
+                  flood-opacity="1"
+                />
+              </filter>
+            </defs>
+            <g filter="url(#glow)">
+              <path
+                fill="currentColor"
+                d="M754.09,176.02c-1.74,5.41-3.55,10.8-5.2,16.23c-11.23,37.12-20.57,74.97-34.41,111.09c-7.2,18.77-22.25,34.58-33.92,51.62
+        c-32.36,47.25-79.62,73.2-132.17,91.51c-1.12,0.39-2.54,0.35-3.39,1.03c-19.85,15.98-37.72,12.66-53.48-7.87
+        c-11.01,41.61-26.48,79.91-19.18,121.85c0.86,4.96,0.92,12.54-2.03,15.27c-14.26,13.22-12.83,30.18-11.99,46.47
+        c0.37,7.23,6.03,14.13,8.96,21.32c2.73,6.7,7.88,14.2,6.58,20.18c-1.03,4.7-10.17,10.39-15.89,10.6
+        c-6.4,0.23-17.47-3.94-18.77-8.43c-6.01-20.76-18.42-37.84-11.55-64.61c9.33-36.37,25.98-72.96,20.05-112.66
+        c-0.53-3.55,2.83-10.78,5.17-11.14c14.26-2.17,11.63-12.36,11.83-21.57c0.31-14.59-2.32-29.3,9.09-42.27
+        c3.7-4.21,2.14-13.72,1.7-20.72c-0.94-14.75,4.02-21.35,20.21-21.45c16.85-0.1,30.2,0.81,33.92,21.15
+        c0.71,3.88,8.38,9.39,12.57,9.16c10.38-0.57,22.44-1.3,30.58-6.76c44.92-30.12,90.28-60.25,116.61-110.03
+        c16.44-31.07,32.49-62.34,48.82-93.46c3.38-6.44,7.21-12.63,10.84-18.94C750.71,174.41,752.4,175.21,754.09,176.02z"
+              />
+              <path
+                fill="currentColor"
+                d="M449.36,786.87c-3.76,9.02-6.13,19-11.58,26.86c-9.56,13.78-27.65,17.87-39.13,10.78c-12.6-7.78-19.51-28.27-13.86-42.2
+        c1.98-4.89,3.99-10.45,7.7-13.83c9.5-8.64,19.08-20.84,30.27-22.96C434.64,743.27,447.11,767.45,449.36,786.87z"
+              />
+            </g>
+          </svg>
+          </button>
+          <div class="nav-info">
+          <h2 class="decode-text">MÚSICA</h2>
+        </div>
+        </div>
+        <div id="minimItem2" class="sidebar-item closed-tab">
+          <button class="sidebar-btn">
+          <svg
+            version="1.1"
+            id="xeno"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1080 1080"
+            style="enable-background: new 0 0 1080 1080"
+            xml:space="preserve"
+          >
+            <defs>
+              <filter
+                id="glow"
+                x="-100%"
+                y="-100%"
+                width="300%"
+                height="300%"
+                color-interpolation-filters="sRGB"
+              >
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="20"
+                  flood-color="#00a6ff"
+                  flood-opacity=".5"
+                />
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="10"
+                  flood-color="#00a6ff"
+                  flood-opacity="1"
+                />
+              </filter>
+            </defs>
+            <g filter="url(#glow)">
+              <path
+                fill="currentColor"
+                d="M521.98,397.93c0,38.27-0.52,76.56,0.44,114.81c0.19,7.59,4.66,20.09,9.55,21.4c7.72,2.07,19.53-0.94,25.93-6.23
+		c12.62-10.42,22.82-23.79,33.83-36.1c41.65-46.6,83.71-92.86,124.58-140.14c15.92-18.42,27.62-40.54,43.89-58.6
+		c19.64-21.79,40.73-42.86,64.11-60.36c7.44-5.57,26.52-2.52,36.14,3.35c13.26,8.09,11.43,23.41,2.23,35.78
+		c-5.34,7.19-11.51,13.9-18.07,20.02c-68.4,63.75-137.31,126.89-193.56,202.35c-15.19,20.37-35.85,36.69-50.94,57.12
+		c-12.08,16.37-22.46,33.89-33.22,51.13c-11.73,18.79-16.13,29.14-12.16,51.64c6.44,36.5,27.46,68.37,36.88,103.99
+		c3.29,12.46,3.47,28.86-8,34.72c-1.54,0.79-3.26,1.32-4.97,1.13c-2.73-0.3-4.91-2.32-6.87-4.23
+		c-13.32-12.95-26.64-25.9-39.97-38.85c-6.9-6.71-14.41-13.73-23.89-15.35c-7.62-1.3-15.32,1.12-22.66,3.52
+		c-21.99,7.16-43.98,14.32-65.97,21.48c-5.25,1.71-11.56,3.25-15.85-0.23c-2.48-2.01-3.59-5.25-4.15-8.39
+		c-2.48-13.95,3.66-27.92,10.68-40.23c11.88-20.86,26.6-39.88,39.81-59.88c6.93-10.5,13.53-21.26,18.97-32.62
+		c6.69-13.98,6.05-21.19,4.01-36.26c-5.9-43.61-9.78-87.49-15.56-131.12c-1.74-13.19-5.25-24.82,9.61-33.31
+		c3.39-1.94,5.48-10.89,4.17-15.49c-5.84-20.59-13.12-40.78-19.89-61.11c-8.69-26.1-15.65-28.45-39.27-13.42
+		c-2.48,1.58-5.2,3.46-7.98,3.82c-34.58,4.47-69.35,7.76-103.74,13.35c-17.01,2.76-24.44-4.69-31.37-18.07
+		c-22.32-43.09-14.37-58.82,35.04-62.49c44.1-3.27,87.92-5.42,131.01-18.07c18.62-5.47,40.09-1.36,60.27-1.39
+		c20.57-0.03,26.94,12.33,26.86,30.68c-0.17,40.55-0.05,81.1-0.05,121.65C521.9,397.93,521.94,397.93,521.98,397.93z"
+              />
+            </g>
+          </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Navigation -->
+    
+    <section class="nav-mobile">
+      <div class="nav-m-home">
+        <button class="nav-m-btn">
+          <svg
+            version="1.1"
+            id="index-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1080 1080"
+            style="enable-background: new 0 0 1080 1080"
+            xml:space="preserve"
+          >
+            <g filter="url(#global-glow)">
+              <path
+                fill="currentColor"
+                d="M638.41,894.96c-32.93-13.11-50.95-39.55-61.58-67.31c-17.47-45.63-35.29-91.31-52.22-136.71
+		c-15.41-41.32-40.12-85.24-30.93-134.13c1.52-8.1-1.59-17.25-3.09-25.84c-8.11-46.41-16.51-92.76-24.36-139.21
+		c-0.67-3.99,0.65-10.96,3.3-12.37c16.04-8.57,32.72-15.93,48.82-23.52c3.36,5.98,5.11,7.94,4.72,8.57
+		c-21.53,35.23-4.51,72.06-0.32,107.04c9.58,80.01,19.28,160.85,52.13,235.84c14.55,33.22,35.54,63.66,53.43,95.46
+		c3.82,6.78,9.43,13.87,9.82,21.01C639.37,845.95,638.49,868.22,638.41,894.96z"
+              />
+              <path
+                fill="currentColor"
+                d="M511.86,130.65c8.33-9.1,18.87-6.5,31.11,4.45c9.73,8.71,23,13.45,32.59,22.27c6.1,5.61,6.43,19.9,12.64,22.67
+		c35.88,15.95,15.77,41.12,10.1,61.3c-2.94,10.47-16.3,20.83-27.32,24.8c-6.18,2.22-17.71-7.97-25.91-13.86
+		c-13.73-9.85-25.65-22.73-40.27-30.72c-25.76-14.08-34.07-51.56-13.87-71.82C496.45,144.2,502.48,139.16,511.86,130.65z"
+              />
+            </g>
+          </svg>
+        </button>
+      </div>
+      <div class="nav-m-menu" id="nav-m-menu">
+        <button class="nav-m-menu-close">
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="-0.5 0 25 25"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 21.32L21 3.32001"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3 3.32001L21 21.32"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div class="selected-overlay">
+        </div>
+        <div class="nav-m-info" id="mobile-info-panel">
+           <h2 class="decode-text"></h2>
+        </div>
+        <ul class="nav-m-wheel">
+          <li class="nav-wheel-item" id="nav-wheel-item-music" data-info="MÚSICA">
+            <audio
+              id="hover-sound"
+              src="/sounds/hover-sound2-1.wav"
+              preload="auto"
+            ></audio>
+            <button class="nav-m-wheelbtn">
+              <svg
+                version="1.1"
+                id="quilisma"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 1080 1080"
+                style="enable-background: new 0 0 1080 1080"
+                xml:space="preserve"
+              >
+                
+                  <path
+                    fill="currentColor"
+                    d="M754.09,176.02c-1.74,5.41-3.55,10.8-5.2,16.23c-11.23,37.12-20.57,74.97-34.41,111.09c-7.2,18.77-22.25,34.58-33.92,51.62
+        c-32.36,47.25-79.62,73.2-132.17,91.51c-1.12,0.39-2.54,0.35-3.39,1.03c-19.85,15.98-37.72,12.66-53.48-7.87
+        c-11.01,41.61-26.48,79.91-19.18,121.85c0.86,4.96,0.92,12.54-2.03,15.27c-14.26,13.22-12.83,30.18-11.99,46.47
+        c0.37,7.23,6.03,14.13,8.96,21.32c2.73,6.7,7.88,14.2,6.58,20.18c-1.03,4.7-10.17,10.39-15.89,10.6
+        c-6.4,0.23-17.47-3.94-18.77-8.43c-6.01-20.76-18.42-37.84-11.55-64.61c9.33-36.37,25.98-72.96,20.05-112.66
+        c-0.53-3.55,2.83-10.78,5.17-11.14c14.26-2.17,11.63-12.36,11.83-21.57c0.31-14.59-2.32-29.3,9.09-42.27
+        c3.7-4.21,2.14-13.72,1.7-20.72c-0.94-14.75,4.02-21.35,20.21-21.45c16.85-0.1,30.2,0.81,33.92,21.15
+        c0.71,3.88,8.38,9.39,12.57,9.16c10.38-0.57,22.44-1.3,30.58-6.76c44.92-30.12,90.28-60.25,116.61-110.03
+        c16.44-31.07,32.49-62.34,48.82-93.46c3.38-6.44,7.21-12.63,10.84-18.94C750.71,174.41,752.4,175.21,754.09,176.02z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M449.36,786.87c-3.76,9.02-6.13,19-11.58,26.86c-9.56,13.78-27.65,17.87-39.13,10.78c-12.6-7.78-19.51-28.27-13.86-42.2
+        c1.98-4.89,3.99-10.45,7.7-13.83c9.5-8.64,19.08-20.84,30.27-22.96C434.64,743.27,447.11,767.45,449.36,786.87z"
+                  />
+                </g>
+              </svg>
+            </button>
+          </li>
+          <li class="nav-wheel-item" data-info="XENO" data-url="https://xeno-beta.vercel.app/">
+            <audio
+              id="hover-sound"
+              src="/sounds/hover-sound2-1.wav"
+              preload="auto"
+            ></audio>
+            <button class="nav-m-wheelbtn">
+              <svg
+            version="1.1"
+            id="xeno"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1080 1080"
+            style="enable-background: new 0 0 1080 1080"
+            xml:space="preserve"
+          >
+            
+            
+              <path
+                fill="currentColor"
+                d="M521.98,397.93c0,38.27-0.52,76.56,0.44,114.81c0.19,7.59,4.66,20.09,9.55,21.4c7.72,2.07,19.53-0.94,25.93-6.23
+		c12.62-10.42,22.82-23.79,33.83-36.1c41.65-46.6,83.71-92.86,124.58-140.14c15.92-18.42,27.62-40.54,43.89-58.6
+		c19.64-21.79,40.73-42.86,64.11-60.36c7.44-5.57,26.52-2.52,36.14,3.35c13.26,8.09,11.43,23.41,2.23,35.78
+		c-5.34,7.19-11.51,13.9-18.07,20.02c-68.4,63.75-137.31,126.89-193.56,202.35c-15.19,20.37-35.85,36.69-50.94,57.12
+		c-12.08,16.37-22.46,33.89-33.22,51.13c-11.73,18.79-16.13,29.14-12.16,51.64c6.44,36.5,27.46,68.37,36.88,103.99
+		c3.29,12.46,3.47,28.86-8,34.72c-1.54,0.79-3.26,1.32-4.97,1.13c-2.73-0.3-4.91-2.32-6.87-4.23
+		c-13.32-12.95-26.64-25.9-39.97-38.85c-6.9-6.71-14.41-13.73-23.89-15.35c-7.62-1.3-15.32,1.12-22.66,3.52
+		c-21.99,7.16-43.98,14.32-65.97,21.48c-5.25,1.71-11.56,3.25-15.85-0.23c-2.48-2.01-3.59-5.25-4.15-8.39
+		c-2.48-13.95,3.66-27.92,10.68-40.23c11.88-20.86,26.6-39.88,39.81-59.88c6.93-10.5,13.53-21.26,18.97-32.62
+		c6.69-13.98,6.05-21.19,4.01-36.26c-5.9-43.61-9.78-87.49-15.56-131.12c-1.74-13.19-5.25-24.82,9.61-33.31
+		c3.39-1.94,5.48-10.89,4.17-15.49c-5.84-20.59-13.12-40.78-19.89-61.11c-8.69-26.1-15.65-28.45-39.27-13.42
+		c-2.48,1.58-5.2,3.46-7.98,3.82c-34.58,4.47-69.35,7.76-103.74,13.35c-17.01,2.76-24.44-4.69-31.37-18.07
+		c-22.32-43.09-14.37-58.82,35.04-62.49c44.1-3.27,87.92-5.42,131.01-18.07c18.62-5.47,40.09-1.36,60.27-1.39
+		c20.57-0.03,26.94,12.33,26.86,30.68c-0.17,40.55-0.05,81.1-0.05,121.65C521.9,397.93,521.94,397.93,521.98,397.93z"
+              />
+           
+          </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="window-hidden" id="window1m">
+        <div class="window-header">
+          <p>Música</p>
+          <div class="window-utility">
+           
+            <span class="window-close-m">
+            <svg
+            width="100%"
+            height="100%"
+            viewBox="-0.5 0 25 25"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 21.32L21 3.32001"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3 3.32001L21 21.32"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            </svg>
+            </span>
+          </div>
+        </div>
+        <div class="music-content">
+          <div class="music-img-m">
+              <img src="./src/img/Reborn-cover.JPG" alt="">
+            </div>
+          <div class="music-info">
+            
+
+            <div class="music-metadata">
+              <h2 class="music-player-m__title"></h2>
+              <p> - </p>
+              <h2 class="music-player-m__author"></h2>
+            </div>
+
+            <div class="music-time">
+              <p class="music-time-m__current">00:00</p>
+              <p class="music-time-m__last">00:00</p>
+            </div>
+
+            <div class="music-bar" id="progress-m">
+              <div id="length-m"></div>
+            </div>
+
+            <div class="music-control">
+              <div class="music-control__backward" id="backward-m">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <title>backward</title>
+                  <path d="M10.2 6.4c-0.488 0-0.931 0.197-1.253 0.512-2.381 2.315-5.947 5.789-5.947 5.789s3.566 3.473 5.944 5.789c0.326 0.315 0.768 0.51 1.256 0.51 0.994 0 1.8-0.805 1.8-1.799v-9c0-0.994-0.806-1.801-1.8-1.801z"/>
+                  <path d="M19.2 6.4c-0.488 0-0.931 0.197-1.253 0.512-2.381 2.315-5.947 5.789-5.947 5.789s3.566 3.473 5.944 5.789c0.326 0.315 0.768 0.51 1.256 0.51 0.994 0 1.8-0.805 1.8-1.799v-9c0-0.994-0.806-1.801-1.8-1.801z"/>
+                </svg>
+              </div>
+
+              <div class="music-control__play" id="play-m">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
+                  <title>play</title>
+                  <path d="M10.396 18.433c2.641-2.574 6.604-6.433 6.604-6.433s-3.963-3.859-6.604-6.433c-0.363-0.349-0.853-0.567-1.396-0.567-1.104 0-2 0.896-2 2v10c0 1.104 0.896 2 2 2 0.543 0 1.033-0.218 1.396-0.567z"/>
+                </svg>
+              </div>
+
+              <div class="music-control__forward" id="forward-m">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <title>forward</title>
+                  <path d="M15.053 6.912c-0.324-0.314-0.765-0.512-1.253-0.512-0.994 0-1.8 0.807-1.8 1.801v9c0 0.994 0.806 1.799 1.8 1.799 0.488 0 0.93-0.195 1.253-0.512 2.381-2.314 5.947-5.787 5.947-5.787s-3.566-3.474-5.947-5.789z"/>
+                  <path d="M6.053 6.912c-0.324-0.314-0.765-0.512-1.253-0.512-0.994 0-1.8 0.807-1.8 1.801v9c0 0.994 0.806 1.799 1.8 1.799 0.488 0 0.93-0.195 1.253-0.512 2.381-2.314 5.947-5.787 5.947-5.787s-3.566-3.474-5.947-5.789z"/>
+                </svg>
+              </div>
+              <button class="music-control-m__stream">Escucha en:</button>
+              <button class="music-control-m__lyrics">Letra</button>
+            </div>
+          </div>
+          <div class="lyrics-m">
+            
+          </div>
+          
+          <div class="music-overlay-m" id="music-overlay-m">
+            <div class="music-overlay__content">
+              <h2 id="overlay-title-m"></h2>
+            <div class="music-overlay-m__buttons"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Click to interact overlay -->
+
+    <div class="click-screen" id="black-overlay">
+      <h3>click to boot</h3>
+    </div>
+
+    <svg
+      style="position: absolute; width: 0; height: 0; overflow: visible"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <filter
+          id="global-glow"
+          x="-10 0%"
+          y="-100%"
+          width="300%"
+          height="300%"
+          color-interpolation-filters="sRGB"
+        >
+          <feDropShadow
+            dx="0"
+            dy="0"
+            stdDeviation="10"
+            flood-color="#00a6ff"
+            flood-opacity=".5"
+          />
+          <feDropShadow
+            dx="0"
+            dy="0"
+            stdDeviation="5"
+            flood-color="#00a6ff"
+            flood-opacity=".8"
+          />
+        </filter>
+      </defs>
+    </svg>
+
+    <script src="./index.js"></script>
+    <script src="./components/mobile.js"></script>
+    <script src="./components/window.js"></script>
+    <script src="./components/player.js"></script>
+  </body>
+</html>
+
+<!-- Tareas
+ - Crear nav item de Registros
+ - Crear una pagina de Música con links a plataformas y funciones como linkear a los registros
+ - Crear las ventanas desplegables de cada pagina con diseño responsivo para movil.
+ -->
