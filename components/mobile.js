@@ -175,7 +175,7 @@ mwindowClose.addEventListener('click', closePlayer);
       url: "./sounds/lagrimas-de-angel-master3.wav",
       title: "lágrimas de ángel",
       artist: "EMME",
-      cover: "./src/img/Reborn-cover.JPG",
+      cover: "./src/img/lad-cover1.JPG",
       links: null,
       lyrics: "No temas más.<br> ¿Quien te dijo que te iba a lastimar?<br> No hay tormenta solo hay calma cuando luz brilla en mi alma.<br><br> Se que es dificil de entender.<br> Si no quieres ver.<br> El oro nubla tu vision.<br> Envenenandome.<br><br> Lagrimas de angel caen por la madrugada.<br> El cielo se abre y caen lagrimas de angel.<br><br> Lagrimas de angel x4. No temas más.<br> Los recuerdos no me dejan descansar.<br> Un llanto que se transforma en el lago de mis memorias.<br><br> Se que es dificil de entender.<br> Si no quieres ver.<br> De agua se llena mi pulmon.<br> Ahogandome.<br><br> Lagrimas de angel caen por la madrugada.<br> El cielo se abre y caen lagrimas de angel.<br><br> Lagrimas de angel x4"
     }
@@ -287,7 +287,6 @@ mwindowClose.addEventListener('click', closePlayer);
 
   const togglePlay = () => {
     if (!isPlaying) {
-      audio.currentTime = 0;
       audio.play();
       isPlaying = true;
 
@@ -300,25 +299,12 @@ mwindowClose.addEventListener('click', closePlayer);
 
       timer = setInterval(updateProgress, 500);
 
-      previewTimer = setTimeout(() => {
-        audio.pause();
-        audio.currentTime = 0;
-        isPlaying = false;
-        clearInterval(timer);
-        clearTimeout(previewTimer);
-        playBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
-            <path d="M10.396 18.433c2.641-2.574 6.604-6.433 6.604-6.433s-3.963-3.859-6.604-6.433c-0.363-0.349-0.853-0.567-1.396-0.567-1.104 0-2 0.896-2 2v10c0 1.104 0.896 2 2 2 0.543 0 1.033-0.218 1.396-0.567z"/>
-          </svg>
-        `;
-        overlay.classList.add("active");
-      }, previewLength * 1000);
+      
 
     } else {
       audio.pause();
       isPlaying = false;
-      clearInterval(timer);
-      clearTimeout(previewTimer);
+      
       playBtn.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
           <path d="M10.396 18.433c2.641-2.574 6.604-6.433 6.604-6.433s-3.963-3.859-6.604-6.433c-0.363-0.349-0.853-0.567-1.396-0.567-1.104 0-2 0.896-2 2v10c0 1.104 0.896 2 2 2 0.543 0 1.033-0.218 1.396-0.567z"/>
