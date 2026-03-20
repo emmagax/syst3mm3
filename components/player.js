@@ -1,27 +1,49 @@
 (() => {
+  // Helper function to decode Base64 encoded URLs
+  const decodeUrl = (encoded) => atob(encoded);
+
   const playlist = [
     {
       id: 1,
-      url: "./sounds/REBORNMASTER.wav",
-      title: "REBORN",
+      url: "Li9zb3VuZHMvc2FsdmFtZS1tYXN0ZXIyLndhdiA=",
+      title: "sálvame (otra vez)",
       artist: "EMME",
-      cover: "./src/img/Reborn-cover.JPG",
+      cover: "./src/img/cover-salvame.jpg",
       links: {
-        soundcloud: "https://on.soundcloud.com/2LWldDbB0bfYMTvijb",
-        apple: "https://music.apple.com/song/reborn/1822419923",
-        youtube: "https://music.youtube.com/watch?v=px6D8QK8lX0&si=gUoAJucfnWlyLYoX",
-        bandcamp: "https://systemme.bandcamp.com/track/reborn"
+        youtube: "https://music.youtube.com/playlist?list=OLAK5uy_kUC6e7og2S7KJVuh3il5HDcSR7gjbyG0A&si=xyMljLSNQSjAJHOx",
+        spotify: "https://open.spotify.com/track/75LN8l04nd2OKGlCsCUa1S?si=cacb81a563f240c2",
+        apple: "https://music.apple.com/us/song/s%C3%A1lvame-otra-vez/1879784698",
+        bandcamp: "https://systemme.bandcamp.com/track/s-lvame-otra-vez"
       },
-      lyrics: "We gather here today.<br> To celebrate the life of someone who no longer exists.<br> He exists just in your memory and in mine.<br> Welcome to my funeral.<br><br> Crying for a memory, but those are fleeting and often get it wrong. <br><br> Hoping for a dream i had.<br> Wake me up and tell me its all a lie.<br><br> Bribing my way into hell.<br>Cause God's plan is expensive and I cannot pay the rent.<br><br> Walking through deadly pastures.<br> Its quieter inside the fiery flame.<br><br> I'm reborn in my own blood, in my own blood.<br> I'm reborn in my own blood, in my own blood.<br> I'm reborn in my own blood, in my own blood.<br><br> Praying for a miracle.<br> To be unbinded from my flesh and bones.<br><br> Scorching my own heart ablaze.<br> The Queen of Rot has laid me down in bed.<br><br> Fighting just to die and come back to life again.<br><br> Walking through deadly pastures.<br> Its quieter inside the fiery flame.<br><br> I'm reborn in my own blood, in my own blood.<br> I'm reborn in my own blood, in my own blood.<br> I'm reborn in my own blood, in my own blood."
+      lyrics: ""
     },
     {
       id: 2,
-      url: "./sounds/lagrimas-de-angel-master3.wav",
+      url: "Li9zb3VuZHMvbGFncmltYXMtZGUtYW5nZWwtbWFzdGVyZmluYWw1LndhdiA=",
       title: "lágrimas de ángel",
       artist: "EMME",
-      cover: "./src/img/lad-cover1.JPG",
-      links: null,
+      cover: "./src/img/lad-cover1.png",
+      links: {
+        youtube: "https://www.youtube.com/watch?v=YkrVgdVqG7k",
+        spotify: "https://open.spotify.com/album/0OUMexq2kJ0eNuw4Nysib1",
+        apple: "https://music.apple.com/ae/album/l%C3%A1grimas-de-%C3%A1ngel-single/1871279273",
+        bandcamp: "https://systemme.bandcamp.com/track/l-grimas-de-ngel"
+      },
       lyrics: "No temas más.<br> ¿Quien te dijo que te iba a lastimar?<br> No hay tormenta solo hay calma cuando luz brilla en mi alma.<br><br> Se que es dificil de entender.<br> Si no quieres ver.<br> El oro nubla tu vision.<br> Envenenandome.<br><br> Lagrimas de angel caen por la madrugada.<br> El cielo se abre y caen lagrimas de angel.<br><br> Lagrimas de angel x4. No temas más.<br> Los recuerdos no me dejan descansar.<br> Un llanto que se transforma en el lago de mis memorias.<br><br> Se que es dificil de entender.<br> Si no quieres ver.<br> De agua se llena mi pulmon.<br> Ahogandome.<br><br> Lagrimas de angel caen por la madrugada.<br> El cielo se abre y caen lagrimas de angel.<br><br> Lagrimas de angel x4"
+    },
+    {
+      id: 3,
+      url: "Li9zb3VuZHMvUkVCT1JOTUFTVEVSLndhdiA=",
+      title: "REBORN",
+      artist: "EMME",
+      cover: "./src/img/Reborn-cover.png",
+      links: {
+        youtube: "https://music.youtube.com/watch?v=px6D8QK8lX0&si=gUoAJucfnWlyLYoX",
+        spotify: "https://open.spotify.com/album/2YvjyPRo0JPeWuOGP4FfZ3?si=7yZ5KztLQI-aDNxwhLG5lA",
+        apple: "https://music.apple.com/song/reborn/1822419923",
+        bandcamp: "https://systemme.bandcamp.com/track/reborn"
+      },
+      lyrics: "We gather here today.<br> To celebrate the life of someone who no longer exists.<br> He exists just in your memory and in mine.<br> Welcome to my funeral.<br><br> Crying for a memory, but those are fleeting and often get it wrong. <br><br> Hoping for a dream i had.<br> Wake me up and tell me its all a lie.<br><br> Bribing my way into hell.<br>Cause God's plan is expensive and I cannot pay the rent.<br><br> Walking through deadly pastures.<br> Its quieter inside the fiery flame.<br><br> I'm reborn in my own blood, in my own blood.<br> I'm reborn in my own blood, in my own blood.<br> I'm reborn in my own blood, in my own blood.<br><br> Praying for a miracle.<br> To be unbinded from my flesh and bones.<br><br> Scorching my own heart ablaze.<br> The Queen of Rot has laid me down in bed.<br><br> Fighting just to die and come back to life again.<br><br> Walking through deadly pastures.<br> Its quieter inside the fiery flame.<br><br> I'm reborn in my own blood, in my own blood.<br> I'm reborn in my own blood, in my own blood.<br> I'm reborn in my own blood, in my own blood."
     }
   ];
 
@@ -58,9 +80,9 @@
         return;
     } else
     overlayBtns.innerHTML = `
-      <a href="${track.links.soundcloud}" target="_blank" id="music-btn" class="music-btn spotify">Soundcloud</a>
+      <a href="${track.links.youtube}" target="_blank" id="music-btn" class="music-btn youtube">Youtube</a>
       <a href="${track.links.apple}" target="_blank" id="music-btn" class="music-btn apple">Apple Music</a>
-      <a href="${track.links.youtube}" target="_blank" id="music-btn" class="music-btn youtube">YouTube</a>
+      <a href="${track.links.spotify}" target="_blank" id="music-btn" class="music-btn spotify">Spotify</a>
       <a href="${track.links.bandcamp}" target="_blank" id="music-btn" class="music-btn bandcamp">Bandcamp</a>
     `;
     overlayTitle.textContent = `Escucha "${track.title}" en:`;
@@ -112,7 +134,7 @@
 
   const loadTrack = (index) => {
     const track = playlist[index];
-    audio.src = track.url;
+    audio.src = decodeUrl(track.url);
     titleEl.textContent = track.title;
     artistEl.textContent = track.artist;
     coverEl.src = track.cover;
@@ -122,6 +144,15 @@
     progressBar.style.width = "0%";
     currentTimeEl.textContent = "00:00";
 
+    // Enable/disable progress bar dragging based on whether track has links
+    if (track.links) {
+      progressContainer.style.pointerEvents = "auto";
+      progressContainer.style.cursor = "pointer";
+    } else {
+      progressContainer.style.pointerEvents = "none";
+      progressContainer.style.cursor = "default";
+    }
+
     audio.addEventListener("loadedmetadata", () => {
       const durationMin = Math.floor(audio.duration / 60);
       const durationSec = Math.floor(audio.duration % 60);
@@ -130,6 +161,7 @@
   };
 
   const togglePlay = () => {
+    const currentTrack = playlist[currentIndex];
     if (!isPlaying) {
       audio.play();
       isPlaying = true;
@@ -142,17 +174,42 @@
       `;
 
       timer = setInterval(updateProgress, 500);
-
       
+      // set timer to stop at 30 seconds and show overlay (only for songs without links)
+      if (!currentTrack.links) {
+        previewTimer = setTimeout(() => {
+          audio.pause();
+          audio.currentTime = 0; // reset to beginning for next play
+          isPlaying = false;
+          playBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
+              <path d="M10.396 18.433c2.641-2.574 6.604-6.433 6.604-6.433s-3.963-3.859-6.604-6.433c-0.363-0.349-0.853-0.567-1.396-0.567-1.104 0-2 0.896-2 2v10c0 1.104 0.896 2 2 2 0.543 0 1.033-0.218 1.396-0.567z"/>
+            </svg>
+          `;
+          clearInterval(timer);
+          updateProgress(); // update progress bar to show reset
+          // show the "Escucha en:" overlay
+          overlay.classList.add('active');
+        }, previewLength * 1000);
+      }
 
     } else {
       audio.pause();
       isPlaying = false;
+      if (previewTimer) {
+        clearTimeout(previewTimer);
+      }
+      // Only reset to beginning for preview songs (no links)
+      if (!currentTrack.links) {
+        audio.currentTime = 0;
+      }
       playBtn.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
           <path d="M10.396 18.433c2.641-2.574 6.604-6.433 6.604-6.433s-3.963-3.859-6.604-6.433c-0.363-0.349-0.853-0.567-1.396-0.567-1.104 0-2 0.896-2 2v10c0 1.104 0.896 2 2 2 0.543 0 1.033-0.218 1.396-0.567z"/>
         </svg>
       `;
+      clearInterval(timer);
+      updateProgress(); // update progress bar to show reset
     }
   };
 

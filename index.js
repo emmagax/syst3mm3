@@ -1,57 +1,23 @@
 
-// Matrix Code Rain (Canvas Drawing)
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('Matrix');
-    const context = canvas.getContext('2d');
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '01';
-    
-    const alphabet = katakana + latin + nums;
-    
-    const fontSize = 20;
-    const columns = canvas.width/fontSize;
-    
-    const rainDrops = [];
-    
-    for( let x = 0; x < columns; x++ ) {
-        rainDrops[x] = 1;
-    }
-    
-    const draw = () => {
-        context.globalCompositeOperation = 'destination-out';
-        context.fillStyle = 'rgba(0, 0, 0, 0.1)'; // adjust alpha for fade speed
-        context.fillRect(0, 0, canvas.width, canvas.height);
-      
-        // Switch back to default to draw new text
-        context.globalCompositeOperation = 'source-over';
-      
-        context.fillStyle = '#00a6ff76';
-        context.font = fontSize + 'px monospace';
-        context.textBaseline = 'top';
-      
-        for (let i = 0; i < rainDrops.length; i++) {
-          const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-          context.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-      
-          if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            rainDrops[i] = 0;
-          }
-          rainDrops[i]++;
-        }
-    };
-    
-    setInterval(draw, 50);
-});
+// Matrix Code Rain (Canvas 2D)
+
+
 
 // Hover Sound
 
 let audioUnlocked = false;
 const hoverSound = document.getElementById('hover-sound');
+
+// Shared click sound (reused to avoid creating a new Audio object on every click)
+const clickSound = new Audio('./sounds/hover-sound.mp3');
+clickSound.volume = 1;
+clickSound.preload = 'auto';
+
+function playClickSound() {
+  clickSound.currentTime = 0;
+  clickSound.play().catch(() => {});
+}
+window.playClickSound = playClickSound;
 
 document.body.addEventListener('click', () => {
   audioUnlocked = true;
@@ -142,12 +108,27 @@ document.querySelectorAll('.window-close-m').forEach(item => {
     }
   });
 });
+document.querySelectorAll('button').forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    if (audioUnlocked) {
+      hoverSound.currentTime = 0;
+      hoverSound.play();
+    }
+  });
+});
 
 
 
 hoverSound.play().catch(error => {
   console.log('Audio play prevented:', error);
 });
+
+// Keep track of whether any window is open (used to suppress hover info panels)
+function updateWindowOpenState() {
+  const anyVisible = document.querySelectorAll('.windows > div.window-visible').length > 0;
+  document.body.classList.toggle('window-open', anyVisible);
+}
+window.updateWindowOpenState = updateWindowOpenState;
 
 // Handle Click with Sound
 
@@ -157,31 +138,61 @@ const windowDisplay1 = document.querySelector("#window1");
 
 const windowTab = document.querySelector("#minimItem1");
 
+const windowDisplay2 = document.querySelector("#window2");
+const windowTab2 = document.querySelector("#minimItem2");
+
 const sidebar = document.querySelector(".sidebar")
+
+// helper to center an element within viewport
+function centerWindow(el) {
+  if (!el) return;
+  // clear ALL inline positioning and transform/opacity from minimize or dragging
+  el.style.left = '';
+  el.style.top = '';
+  el.style.transform = '';
+  el.style.opacity = '';
+  el.style.pointerEvents = '';
+  // force reflow so cleared styles are applied
+  void el.offsetWidth;
+  
+  const rect = el.getBoundingClientRect();
+  const left = window.innerWidth / 2 - rect.width / 2;
+  const top = window.innerHeight / 2 - rect.height / 2;
+  el.style.left = `${left}px`;
+  el.style.top = `${top}px`;
+}
 
 clickableItems.forEach(item => {
   item.addEventListener('click', () => {
-    const audio = new Audio('/sounds/hover-sound.mp3');
-    audio.volume = 1;
-    audio.play();
-    
-    audio.onended = () => {
-      if (windowDisplay1.classList.contains('window-hidden')) {
-        windowDisplay1.classList.remove('window-hidden');
-        windowDisplay1.classList.add('window-visible');
-      
-      if (sidebar.classList.contains('window-hidden')) {
-        sidebar.classList.remove('window-hidden');
-      }
+    const btn = item.querySelector('.nav-btn');
+    if (btn) {
+      windowDisplay1._navButton = btn;
+    }
 
-      if (windowTab.classList.contains('closed-tab')) {
-        windowTab.classList.remove('closed-tab');
-        windowTab.classList.add('active-tab');
-      }
-        
-        
-      }
-    };
+    playClickSound();
+
+    // immediately reveal window/sidebar/tab instead of waiting for sound
+    if (windowDisplay1.classList.contains('window-hidden')) {
+      windowDisplay1.classList.remove('window-hidden');
+      windowDisplay1.classList.add('window-visible');
+      // center immediately without setTimeout
+      centerWindow(windowDisplay1);
+    }
+
+    if (sidebar.classList.contains('window-hidden')) {
+      sidebar.classList.remove('window-hidden');
+    }
+
+    if (windowTab.classList.contains('closed-tab')) {
+      windowTab.classList.remove('closed-tab');
+      windowTab.classList.add('active-tab');
+    }
+
+    if (typeof window.updateWindowOpenState === 'function') {
+      window.updateWindowOpenState();
+    } else {
+      document.body.classList.add('window-open');
+    }
   });
 });
 
@@ -189,11 +200,34 @@ const clickableItems2 = document.querySelectorAll('.nav-item2');
 
 clickableItems2.forEach(item => {
   item.addEventListener('click', () => {
-    const audio = new Audio('/sounds/hover-sound.mp3');
-    audio.volume = 1; 
-    audio.play();
+    const btn = item.querySelector('.nav-btn');
+    if (btn) {
+      windowDisplay2._navButton = btn;
+    }
 
-    
+    playClickSound();
+
+    // Open portfolio window (window2) and activate its tab.
+    if (windowDisplay2.classList.contains('window-hidden')) {
+      windowDisplay2.classList.remove('window-hidden');
+      windowDisplay2.classList.add('window-visible');
+      centerWindow(windowDisplay2);
+    }
+
+    if (sidebar.classList.contains('window-hidden')) {
+      sidebar.classList.remove('window-hidden');
+    }
+
+    if (windowTab2.classList.contains('closed-tab')) {
+      windowTab2.classList.remove('closed-tab');
+      windowTab2.classList.add('active-tab');
+    }
+
+    if (typeof window.updateWindowOpenState === 'function') {
+      window.updateWindowOpenState();
+    } else {
+      document.body.classList.add('window-open');
+    }
   });
 });
 
@@ -202,9 +236,7 @@ const clickableItems3 = document.querySelectorAll('.nav-m-home');
 
 clickableItems3.forEach(item => {
   item.addEventListener('click', () => {
-    const audio = new Audio('/sounds/hover-sound.mp3');
-    audio.volume = 1; 
-    audio.play();
+    playClickSound();
   });
 });
 
@@ -213,7 +245,7 @@ clickableItems3.forEach(item => {
 // Decoding
 
 function decodeText(element) {
-  const chars = '!<>-_\\/[]{}-=+*^?#__ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const chars = '█▓▒░';
   const originalText = element.dataset.value || element.textContent;
   element.dataset.value = originalText;
   let frame = 0;
@@ -242,25 +274,23 @@ function decodeText(element) {
 }
 
 // Usage: apply on hover
-document.querySelectorAll('.nav-item').forEach(navItem => {
-  navItem.addEventListener('mouseenter', () => {
-    const h2 = navItem.querySelector('.nav-info h2.decode-text');
+// Only trigger the hover info when the actual button is hovered (not the empty animation container)
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    if (document.body.classList.contains('window-open')) return;
+
+    const navInfo = btn.parentElement.querySelector('.nav-info');
+    const h2 = navInfo ? navInfo.querySelector('h2.decode-text') : null;
     if (h2) {
       decodeText(h2);
     }
   });
 });
-document.querySelectorAll('.nav-item2').forEach(navItem => {
-  navItem.addEventListener('mouseenter', () => {
-    const h2 = navItem.querySelector('.nav-info h2.decode-text');
-    if (h2) {
-      decodeText(h2);
-    }
-  });
-});
-document.querySelectorAll('#minimItem1').forEach(sidebarItem => {
-  sidebarItem.addEventListener('mouseenter', () => {
-    const h2 = sidebarItem.querySelector('h2.decode-text');
+
+document.querySelectorAll('.sidebar-btn').forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    const navInfo = btn.parentElement.querySelector('.nav-info');
+    const h2 = navInfo ? navInfo.querySelector('h2.decode-text') : null;
     if (h2) {
       decodeText(h2);
     }
@@ -312,9 +342,12 @@ document.querySelectorAll('.nav-item2').forEach(item => {
 
 
 const overlay = document.getElementById('black-overlay');
+const overlayBtn = document.querySelector('.click-screen__button');
+const logo = document.querySelector('h1');
 
-overlay.addEventListener('click', () => {
+overlayBtn.addEventListener('click', () => {
   overlay.classList.add('hidden');
+  logo.style.display = 'block';
 
   overlay.addEventListener('transitionend', () => {
     overlay.remove();

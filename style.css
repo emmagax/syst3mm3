@@ -22,6 +22,10 @@
   font-family: Astera;
   src: url("./src/fonts/ASTERA\ v2.ttf");
 }
+@font-face {
+  font-family: Eclipse;
+  src: url("./src/fonts/eyeclipse.ttf");
+}
 
 .syne-mono-regular {
   font-family: "Syne Mono", monospace;
@@ -29,34 +33,20 @@
   font-style: normal;
 }
 
-h1 {
-  font-family: Abnes;
-  font-size: 4rem;
-  text-align: center;
-  margin-top: 10rem;
-  pointer-events: none;
-}
-
 html {
   background-color: black;
-  height: 100%;
-  overflow: hidden;
   margin: 0;
   padding: 0;
   top: 0;
-  cursor: url("/src/img/cursor.png") 5 5, auto;
+  cursor:
+    url("/src/img/cursor.png") 5 5,
+    auto;
 }
 
 body {
   top: 0;
   padding: 0;
-  height: 100%;
-}
-
-h1 {
-  color: #e3f3f8f1;
-  text-shadow: 0 0 20px #00a6ff, 0 0 20px #00a6ff, 0 0 20px #00a6ff,
-    0 0 20px #00a6ff;
+  height: 200vh;
 }
 
 .landing-img {
@@ -80,7 +70,7 @@ canvas#Matrix {
 .nav1 {
   position: absolute;
   top: 0;
-  left: 35%;
+  left: 20%;
   z-index: 9999;
 }
 .nav2 {
@@ -91,7 +81,7 @@ canvas#Matrix {
 }
 
 #quilisma,
-#xeno {
+#portafolio {
   color: rgb(199, 221, 246);
   width: 10rem;
   transform-origin: center;
@@ -99,24 +89,32 @@ canvas#Matrix {
 }
 
 #quilisma:hover,
-#xeno:hover {
+#portafolio:hover {
   animation: pulse 1.5s ease-in-out infinite;
   transform-origin: center;
 }
 
-#xeno {
+#portafolio {
   width: 8rem;
 }
 
 .nav-item {
   animation: fall 20s linear infinite; /* Infinite loop */
   animation-delay: 0s;
+  pointer-events: none; /* only allow pointer events on the button inside */
 }
 .nav-item2 {
+  display: flex;
   opacity: 0; /* hide before animation */
   animation: fall 20s linear infinite;
   animation-delay: 8s;
   animation-fill-mode: forwards;
+  pointer-events: none; /* only allow pointer events on the button inside */
+}
+
+.nav-item .nav-btn,
+.nav-item2 .nav-btn {
+  pointer-events: auto;
 }
 
 .nav-item:hover,
@@ -132,12 +130,15 @@ canvas#Matrix {
 .nav-item:hover h2,
 .nav-item2:hover h2,
 .sidebar-item:hover h2 {
-  display: block;
+  display: flex;
   color: #e3f3f8f1;
-  font-family: Syne Mono;
-  font-size: 30px;
-  text-shadow: 0 0 10px #00a6ff, 0 0 20px #00a6ff;
-  margin: 0;
+  font-family: Eclipse;
+  font-size: 16px;
+  text-shadow:
+    0 0 10px #00a6ff,
+    0 0 20px #00a6ff;
+  margin: 0px;
+  padding-left: 0.5em;
 }
 
 .nav-info {
@@ -148,9 +149,7 @@ canvas#Matrix {
   display: none;
   position: absolute;
   top: 100%; /* position below the nav-item */
-  left: -200px;
-  width: 200px;
-  padding: 15px;
+  padding: 10px;
   border: 1px solid aliceblue;
   z-index: 100; /* make sure it’s on top */
   opacity: 1;
@@ -159,10 +158,9 @@ canvas#Matrix {
 .sidebar-item .nav-info {
   display: none;
   position: absolute;
-  top: 40px; /* position below the nav-item */
+  top: 50px; /* position below the nav-item */
   left: 150px;
-  width: 200px;
-  padding: 15px;
+  padding: 10px;
   border: 1px solid aliceblue;
   z-index: 100; /* make sure it’s on top */
   opacity: 1;
@@ -172,28 +170,37 @@ canvas#Matrix {
   display: none;
   position: absolute;
   top: 100%; /* position below the nav-item */
-  left: 100px;
-  width: 200px;
-  padding: 15px;
+  left: -7rem;
+  padding: 10px;
   border: 1px solid aliceblue;
   z-index: 100; /* make sure it’s on top */
   opacity: 1;
   pointer-events: none;
 }
-.nav-item:hover .nav-info {
-  display: block;
+/* Show info only when hovering the actual icon/button (prevents empty-space hover triggers) */
+.nav-btn:hover + .nav-info {
+  display: flex;
   opacity: 1;
   pointer-events: auto;
 }
-.sidebar-item:hover .nav-info {
+.sidebar-btn:hover + .nav-info {
   display: block;
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
-.nav-item2:hover .nav-info {
-  display: block;
-  opacity: 1;
-  pointer-events: auto;
+
+/* When any window is open, do not show hover info for falling nav items */
+body.window-open .nav-btn:hover + .nav-info,
+body.window-open .sidebar-btn:hover + .nav-info {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* When any window is open, keep the falling animation running (do not pause on hover) */
+body.window-open .nav-item:hover,
+body.window-open .nav-item2:hover {
+  animation-play-state: running !important;
 }
 
 .nav-btn {
@@ -205,7 +212,9 @@ canvas#Matrix {
 .nav-btn:hover,
 .nav-m-btn:hover,
 .nav-m-menu-close:hover {
-  cursor: url("/src/img/cursor.png") 5 5, auto;
+  cursor:
+    url("/src/img/cursor.png") 5 5,
+    auto;
 }
 
 @keyframes pulse {
@@ -240,6 +249,31 @@ canvas#Matrix {
   to {
     opacity: 0;
     transform: scale(1.5) translateY(0);
+  }
+}
+@keyframes scaleUp {
+  from {
+    transform: scale(1) translateY(0);
+  }
+  to {
+    transform: scale(1.1) translateY(0);
+  }
+}
+@keyframes scaleDown {
+  from {
+    transform: scale(1.1) translateY(0);
+  }
+  to {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -284,16 +318,66 @@ canvas#Matrix {
   user-select: none; /* optional: prevent text selection */
   z-index: 9999;
 }
+.logo {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  color: white; /* make text visible on black */
+  user-select: none;
+  z-index: 9998;
+}
+
+h1 {
+  display: none;
+  font-family: Eclipse;
+  font-size: 4rem;
+  text-align: center;
+  pointer-events: none;
+  color: aliceblue;
+  filter: url(#global-glow);
+  animation: fadeIn 3s ease;
+}
+
+.click-screen__button {
+  background: none;
+  border: white solid 1px;
+  color: aliceblue;
+  font-family: Eclipse;
+  font-size: 1rem;
+  cursor:
+    url("/src/img/cursor.png") 5 5,
+    auto;
+  animation: scaleDown 0.3s ease backwards;
+}
+.click-screen__button:hover {
+  animation: scaleUp 0.3s ease forwards;
+  filter: url(#global-glow);
+}
 
 h3 {
   color: aliceblue;
-  font-family: Syne Mono;
+  margin: 10px;
 }
 
+.logo,
+.nav-m-btn {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.hide-ui {
+  opacity: 0;
+  pointer-events: none;
+}
 .nav-m-home {
   display: none;
   position: fixed;
-  top: 24rem;
+  top: 35rem;
   z-index: 9999;
 }
 
@@ -311,17 +395,26 @@ h3 {
 }
 
 .nav-m-menu {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  z-index: 1000;
+  height: 100%;
   overflow: hidden;
+  touch-action: auto;
+  display: flex;
+  pointer-events: none;
+  transform: translateY(-100%); /* 🔴 oculto desde el inicio */
+  transition: transform 0.3s ease;
+  text-align: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.nav-m-menu.show-menu {
+  transform: translateY(0); /* visible */
+  pointer-events: auto;
 }
 .nav-m-menu-close {
   position: fixed;
@@ -332,7 +425,14 @@ h3 {
   background: none;
   border: none;
   filter: url(#global-glow);
-  z-index: 9000;
+  z-index: 9999;
+}
+
+.nav-m-btn svg {
+  color: rgb(199, 221, 246);
+  width: 3rem;
+  height: auto;
+  animation: fadeIn 3s ease;
 }
 
 @media (max-width: 600px) {
@@ -351,9 +451,18 @@ h3 {
     display: flex;
     height: 100vh;
     width: 100vw;
+    justify-content: center;
   }
   .nav-m-home {
     display: flex;
+  }
+  .click-screen__button {
+    font-size: 10px;
+    width: 15rem;
+  }
+  .logo h1 {
+    font-size: 40px;
+    justify-content: center;
   }
 }
 
@@ -380,12 +489,18 @@ ul {
 
 .nav-m-wheel {
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex: 1;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
-  height: 100vh;
+  min-height: 0;
   width: 100vw;
   scroll-behavior: smooth;
   padding-top: calc(50vh - 75px); /* half of item height */
@@ -395,6 +510,7 @@ ul {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 .nav-m-wheel::-webkit-scrollbar {
@@ -414,15 +530,19 @@ ul {
   scroll-snap-align: center;
   min-height: 150px;
   width: 100%;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
   opacity: 0.3;
   transform: scale(0.8);
+  z-index: 9999;
 }
 
 .nav-wheel-item #quilisma {
   width: 6rem;
 }
-.nav-wheel-item #xeno {
+.nav-wheel-item #portafolio {
+  margin-left: 3rem;
   width: 5rem;
 }
 
@@ -432,7 +552,9 @@ ul {
 }
 
 .nav-wheel-item:hover {
-  cursor: url("/src/img/cursor.png") 5 5, auto;
+  cursor:
+    url("/src/img/cursor.png") 5 5,
+    auto;
 }
 
 .selected-overlay {
@@ -459,17 +581,20 @@ ul {
   top: 80vh; /* position below the nav-item */
   align-items: center;
   text-align: center;
-  font-size: 20px;
-  width: 200px;
+  font-size: 12px;
   padding: 1px;
   border: 1px solid aliceblue;
   color: aliceblue;
-  font-family: Syne Mono;
+  font-family: Eclipse;
   z-index: 100; /* make sure it’s on top */
   opacity: 1;
   transition: opacity 0.3s ease;
   pointer-events: none;
   visibility: visible;
+}
+
+#mobile-info-panel h2 {
+  margin-left: 0.5rem;
 }
 
 .sidebar {
@@ -481,18 +606,37 @@ ul {
   padding: 15px;
   /* background: #2c3d63; */
   transition: width 0.3s ease;
-  backdrop-filter: blur(10px);
+  /* remove blur effect so sidebar is opaque without background distortion */
+  /* backdrop-filter: blur(10px); */
+  z-index: 10001;
+}
+
+.sidebar-item {
+  position: relative;
 }
 
 .sidebar-item #quilisma {
   width: 8rem;
+}
+.sidebar-item #portafolio {
+  width: 7rem;
+  margin-left: 2.5rem;
+}
+
+#minimItem1 .nav-info {
+  top: 2rem;
+}
+#minimItem2 .nav-info {
+  top: 2rem;
 }
 
 .sidebar-btn {
   background: none;
   border: none;
   filter: url(#glow);
-  cursor: url("/src/img/cursor.png") 5 5, auto;
+  cursor:
+    url("/src/img/cursor.png") 5 5,
+    auto;
   transition: opacity 0.3s ease-in-out;
 }
 
