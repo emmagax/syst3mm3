@@ -512,7 +512,7 @@
   }
   .music-control-m__stream {
     position: fixed;
-    bottom: 10rem;
+    bottom: 1rem;
     right: 20px;
     background-color: transparent;
     text-decoration: none;
@@ -525,7 +525,7 @@
   }
   .music-control-m__lyrics {
     position: fixed;
-    bottom: 10rem;
+    bottom: 1rem;
     left: 20px;
     background-color: transparent;
     text-decoration: none;
