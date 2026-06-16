@@ -19,6 +19,7 @@ if (!windows.length) {
 
 // Ensure body has correct "window-open" state on load
 updateWindowOpenState();
+window.syncNavActiveState?.();
 
 function playClickSound() {
   if (typeof window.playClickSound === 'function' && window.playClickSound !== playClickSound) {
@@ -35,8 +36,44 @@ function updateWindowOpenState() {
   document.body.classList.toggle('window-open', anyWindowVisible);
 }
 
+function getNavItemForWindow(win, tab) {
+  return tab?.closest('.nav-item, .nav-item2') || win._navButton?.closest('.nav-item, .nav-item2');
+}
+
+function setNavItemMinimizedState(win, tab, isMinimized) {
+  const navItem = getNavItemForWindow(win, tab);
+  if (navItem) {
+    navItem.classList.toggle('minimized', isMinimized);
+  }
+}
+
+function saveWindowPosition(win) {
+  if (!win) return;
+
+  const rect = win.getBoundingClientRect();
+  win.dataset.restoreLeft = `${rect.left}px`;
+  win.dataset.restoreTop = `${rect.top}px`;
+}
+
+function restoreWindowPosition(win) {
+  if (!win) return;
+
+  if (win.dataset.restoreLeft && win.dataset.restoreTop) {
+    win.style.left = win.dataset.restoreLeft;
+    win.style.top = win.dataset.restoreTop;
+  } else {
+    win.style.left = '';
+    win.style.top = '';
+  }
+
+  win.style.transform = '';
+  win.style.opacity = '';
+  win.style.pointerEvents = '';
+}
+
 // expose helper for other scripts to keep window-open state in sync
 window.updateWindowOpenState = updateWindowOpenState;
+window.restoreWindowPosition = restoreWindowPosition;
 
 function setupWindow(win, tab) {
   const closeBtn = win.querySelector('.window-close');
@@ -53,10 +90,13 @@ function setupWindow(win, tab) {
 }
 
 function closeWindow(win, tab) {
-  playClickSound();
 
   win.classList.remove('fade-in', 'window-visible', 'minimizing', 'maximize');
   win.classList.add('window-hidden');
+  win.dataset.running = 'false';
+  delete win.dataset.restoreLeft;
+  delete win.dataset.restoreTop;
+  setNavItemMinimizedState(win, tab, false);
 
   if (tab) {
     tab.classList.remove('active-tab', 'minimized-tab');
@@ -82,20 +122,22 @@ function closeWindow(win, tab) {
   }
 
   updateWindowOpenState();
+  window.syncNavActiveState?.();
 }
 
 function toggleMaximize(win) {
-  playClickSound();
   win.classList.toggle('maximize');
 }
 
 function minimizeWindow(win, tab) {
-  if (!tab) return;
+  const target = getNavItemForWindow(win, tab);
 
-  playClickSound();
+  if (!target) return;
+
+  saveWindowPosition(win);
 
   const windowRect = win.getBoundingClientRect();
-  const tabRect = tab.getBoundingClientRect();
+  const tabRect = target.getBoundingClientRect();
 
   const deltaX = (tabRect.left + tabRect.width / 2) - (windowRect.left + windowRect.width / 2);
   const deltaY = (tabRect.top + tabRect.height / 2) - (windowRect.top + windowRect.height / 2);
@@ -113,22 +155,17 @@ function minimizeWindow(win, tab) {
     win.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.3)`;
     win.style.opacity = '0';
     win.style.pointerEvents = 'none';
-
-    if (tab) {
-      tab.classList.remove('active-tab', 'closed-tab');
-      tab.classList.add('minimized-tab');
-    }
+    setNavItemMinimizedState(win, tab, true);
 
     updateWindowOpenState();
+    window.syncNavActiveState?.();
   }, 500);
 }
 
 function restoreWindow(win, tab) {
-  playClickSound();
 
-  win.style.transform = '';
-  win.style.opacity = '';
-  win.style.pointerEvents = '';
+  restoreWindowPosition(win);
+  setNavItemMinimizedState(win, tab, false);
 
   win.classList.remove('window-hidden', 'minimizing');
   win.classList.add('window-visible');
@@ -139,6 +176,7 @@ function restoreWindow(win, tab) {
   }
 
   updateWindowOpenState();
+  window.syncNavActiveState?.();
 }
 
 function dragElement(elmnt) {
@@ -190,7 +228,7 @@ function dragElement(elmnt) {
     pos4 = e.clientY;
 
     elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';// Ensure dragged window stays on top
   }
 
   function closeDragElement() {
