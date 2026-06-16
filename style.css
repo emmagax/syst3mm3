@@ -26,6 +26,26 @@
   font-family: Eclipse;
   src: url("./src/fonts/eyeclipse.ttf");
 }
+@font-face {
+  font-family: Digital;
+  src: url("./src/fonts/Technology.ttf");
+}
+@font-face {
+  font-family: Screen;
+  src: url("./src/fonts/Blue\ Screen\ Personal\ Use.ttf");
+}
+@font-face {
+  font-family: Kiwi;
+  src: url("./src/fonts/KiwiSoda.ttf");
+}
+@font-face {
+  font-family: Caval;
+  src: url("./src/fonts/Cavalhatriz.ttf");
+}
+@font-face {
+  font-family: Mojang;
+  src: url("./src/fonts/Mojang-Regular.ttf");
+}
 
 .syne-mono-regular {
   font-family: "Syne Mono", monospace;
@@ -34,13 +54,10 @@
 }
 
 html {
-  background-color: black;
+  background-color: #fafdff;
   margin: 0;
   padding: 0;
   top: 0;
-  cursor:
-    url("/src/img/cursor.png") 5 5,
-    auto;
 }
 
 body {
@@ -67,54 +84,82 @@ canvas#Matrix {
   display: block;
 }
 
-.nav1 {
-  position: absolute;
-  top: 0;
-  left: 20%;
-  z-index: 9999;
+.nav-column {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translate(-50%, -50%);
+  z-index: 10003;
 }
+
+.nav1,
 .nav2 {
-  position: absolute;
-  top: 0;
-  left: 75%;
-  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
 }
 
 #quilisma,
 #portafolio {
-  color: rgb(199, 221, 246);
-  width: 10rem;
+  color: #ffffff;
+  width: 6rem;
   transform-origin: center;
   transition: transform 0.3s ease-in-out;
 }
 
 #quilisma:hover,
 #portafolio:hover {
-  animation: pulse 1.5s ease-in-out infinite;
   transform-origin: center;
 }
 
 #portafolio {
-  width: 8rem;
+  width: 5rem;
 }
-
-.nav-item {
-  animation: fall 20s linear infinite; /* Infinite loop */
-  animation-delay: 0s;
-  pointer-events: none; /* only allow pointer events on the button inside */
+#quilisma {
+  width: 5rem;
 }
+.nav-item,
 .nav-item2 {
+  position: relative;
   display: flex;
-  opacity: 0; /* hide before animation */
-  animation: fall 20s linear infinite;
-  animation-delay: 8s;
-  animation-fill-mode: forwards;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
   pointer-events: none; /* only allow pointer events on the button inside */
 }
 
 .nav-item .nav-btn,
 .nav-item2 .nav-btn {
   pointer-events: auto;
+}
+
+.nav-item.active::after,
+.nav-item2.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.85rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #aaaaaa;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.nav-item.minimized.active::after,
+.nav-item2.minimized.active::after {
+  background: #aaaaaa3d;
+  box-shadow: none;
 }
 
 .nav-item:hover,
@@ -125,34 +170,37 @@ canvas#Matrix {
 .nav-item h2,
 .nav-item2 h2,
 .sidebar-item h2 {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  color: #aaaaaa;
+  font-family: monospace;
+  font-weight: 100;
+  font-size: 1rem;
+  margin: 0px;
 }
 .nav-item:hover h2,
 .nav-item2:hover h2,
 .sidebar-item:hover h2 {
-  display: flex;
-  color: #e3f3f8f1;
-  font-family: Eclipse;
-  font-size: 16px;
-  text-shadow:
-    0 0 10px #00a6ff,
-    0 0 20px #00a6ff;
-  margin: 0px;
-  padding-left: 0.5em;
-}
-
-.nav-info {
-  text-align: center;
-}
-
-.nav-item .nav-info {
-  display: none;
-  position: absolute;
-  top: 100%; /* position below the nav-item */
-  padding: 10px;
-  border: 1px solid aliceblue;
-  z-index: 100; /* make sure it’s on top */
+  visibility: visible;
   opacity: 1;
+}
+
+.nav-item .nav-info,
+.nav-item2 .nav-info {
+  position: absolute;
+  top: calc(100% + 1rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: max-content;
+  min-width: 6rem;
+  padding: 0.25rem 0.5rem;
+  z-index: 10007;
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 .sidebar-item .nav-info {
@@ -166,21 +214,14 @@ canvas#Matrix {
   opacity: 1;
   pointer-events: none;
 }
-.nav-item2 .nav-info {
-  display: none;
-  position: absolute;
-  top: 100%; /* position below the nav-item */
-  left: -7rem;
-  padding: 10px;
-  border: 1px solid aliceblue;
-  z-index: 100; /* make sure it’s on top */
-  opacity: 1;
-  pointer-events: none;
-}
 /* Show info only when hovering the actual icon/button (prevents empty-space hover triggers) */
-.nav-btn:hover + .nav-info {
-  display: flex;
+.nav-btn:hover + .nav-info,
+.nav-item:hover .nav-info,
+.nav-item2:hover .nav-info,
+.nav-item.show-label .nav-info,
+.nav-item2.show-label .nav-info {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 .sidebar-btn:hover + .nav-info {
@@ -188,13 +229,6 @@ canvas#Matrix {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-}
-
-/* When any window is open, do not show hover info for falling nav items */
-body.window-open .nav-btn:hover + .nav-info,
-body.window-open .sidebar-btn:hover + .nav-info {
-  display: none !important;
-  pointer-events: none !important;
 }
 
 /* When any window is open, keep the falling animation running (do not pause on hover) */
@@ -206,15 +240,12 @@ body.window-open .nav-item2:hover {
 .nav-btn {
   background: none;
   border: none;
-  filter: url(#glow);
 }
 
 .nav-btn:hover,
 .nav-m-btn:hover,
 .nav-m-menu-close:hover {
-  cursor:
-    url("/src/img/cursor.png") 5 5,
-    auto;
+  cursor: pointer;
 }
 
 @keyframes pulse {
@@ -292,9 +323,9 @@ body.window-open .nav-item2:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: rgb(32, 33, 34);
   opacity: 1;
-  z-index: 9999; /* very high to cover everything */
+  z-index: 10004; /* above nav and all other UI */
   transition: opacity 0.5s ease;
 }
 
@@ -309,14 +340,15 @@ body.window-open .nav-item2:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: rgb(32, 33, 34);
   display: flex;
   justify-content: center; /* horizontal center */
   align-items: center; /* vertical center */
   color: white; /* make text visible on black */
   font-size: 2rem; /* optional: larger text */
   user-select: none; /* optional: prevent text selection */
-  z-index: 9999;
+  z-index: 10004;
+  pointer-events: auto;
 }
 .logo {
   display: flex;
@@ -327,15 +359,15 @@ body.window-open .nav-item2:hover {
   height: 100vh;
   justify-content: center; /* horizontal center */
   align-items: center; /* vertical center */
-  color: white; /* make text visible on black */
+  color: #0f5380; /* make text visible on black */
   user-select: none;
-  z-index: 9998;
+  z-index: 10;
 }
 
 h1 {
   display: none;
-  font-family: Eclipse;
-  font-size: 4rem;
+  font-family: Caval;
+  font-size: 10rem;
   text-align: center;
   pointer-events: none;
   color: aliceblue;
@@ -345,22 +377,18 @@ h1 {
 
 .click-screen__button {
   background: none;
-  border: white solid 1px;
+  border: aliceblue solid 1px;
   color: aliceblue;
-  font-family: Eclipse;
+  font-family: monospace;
   font-size: 1rem;
-  cursor:
-    url("/src/img/cursor.png") 5 5,
-    auto;
+
   animation: scaleDown 0.3s ease backwards;
 }
 .click-screen__button:hover {
   animation: scaleUp 0.3s ease forwards;
-  filter: url(#global-glow);
 }
 
 h3 {
-  color: aliceblue;
   margin: 10px;
 }
 
@@ -595,62 +623,4 @@ ul {
 
 #mobile-info-panel h2 {
   margin-left: 0.5rem;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 80px;
-  padding: 15px;
-  /* background: #2c3d63; */
-  transition: width 0.3s ease;
-  /* remove blur effect so sidebar is opaque without background distortion */
-  /* backdrop-filter: blur(10px); */
-  z-index: 10001;
-}
-
-.sidebar-item {
-  position: relative;
-}
-
-.sidebar-item #quilisma {
-  width: 8rem;
-}
-.sidebar-item #portafolio {
-  width: 7rem;
-  margin-left: 2.5rem;
-}
-
-#minimItem1 .nav-info {
-  top: 2rem;
-}
-#minimItem2 .nav-info {
-  top: 2rem;
-}
-
-.sidebar-btn {
-  background: none;
-  border: none;
-  filter: url(#glow);
-  cursor:
-    url("/src/img/cursor.png") 5 5,
-    auto;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.minimized-tab {
-  display: block;
-}
-
-.active-tab {
-  display: block;
-  transform-origin: center;
-}
-.active-tab #quilisma {
-  animation: pulse 1.5s ease-in-out infinite;
-}
-.closed-tab {
-  display: none;
 }
